@@ -7,7 +7,7 @@
  - mkl-service
 
 ## Credits : 
-  - Special thanks to <a href="https://github.com/johannesharmse">Johannes Harmse/a>
+  - Special thanks to <a href="https://github.com/johannesharmse">Johannes Harmse</a>
   - github.com@johannesharmse/distraction_detection
   
 ## Developers : 
