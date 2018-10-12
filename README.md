@@ -5,6 +5,7 @@
  - keras 
  - tensorflow
  - mkl-service
+ - pyqt5
 
 ## Credits : 
   - Special thanks to <a href="https://github.com/johannesharmse">Johannes Harmse</a>
