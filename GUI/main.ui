@@ -283,12 +283,30 @@
   <widget class="QTableWidget" name="tableWidget">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>300</y>
-     <width>701</width>
-     <height>231</height>
+     <x>130</x>
+     <y>310</y>
+     <width>531</width>
+     <height>211</height>
     </rect>
    </property>
+   <property name="rowCount">
+    <number>7</number>
+   </property>
+   <property name="columnCount">
+    <number>5</number>
+   </property>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <column/>
+   <column/>
+   <column/>
+   <column/>
+   <column/>
   </widget>
  </widget>
  <resources/>
