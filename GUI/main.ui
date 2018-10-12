@@ -314,17 +314,6 @@
    <column/>
    <column/>
   </widget>
-  <widget class="QWidget" name="verticalLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>300</y>
-     <width>691</width>
-     <height>231</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout"/>
-  </widget>
  </widget>
  <resources/>
  <connections/>
