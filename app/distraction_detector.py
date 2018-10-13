@@ -3,6 +3,7 @@ import imutils
 import cv2
 from keras.models import load_model
 import numpy as np
+import time
 
 # models
 # face and eyes are templates from opencv
@@ -29,7 +30,7 @@ min_neighbours = 5
 # video_out = cv2.VideoWriter('video_out.avi', fourcc, 10.0,(1200, 900))
 
 
-def start_detection(pressed_button):
+def start_detection(pressed_button, self):
     # init camera window
     if pressed_button == "test":
         cv2.namedWindow('DEMO')
@@ -41,7 +42,11 @@ def start_detection(pressed_button):
     if camera.isOpened() is False:
         print("Unable to read camera feed")
 
+    # start timer
+    start_time = time.time()
+    
     while True:
+
         # get frame
         ret, frame = camera.read()
 
