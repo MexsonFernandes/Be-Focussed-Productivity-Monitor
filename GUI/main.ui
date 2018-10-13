@@ -283,9 +283,9 @@
   <widget class="QTableWidget" name="tableWidget">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>310</y>
-     <width>531</width>
+     <x>180</x>
+     <y>300</y>
+     <width>431</width>
      <height>211</height>
     </rect>
    </property>
@@ -299,7 +299,7 @@
     <number>7</number>
    </property>
    <property name="columnCount">
-    <number>5</number>
+    <number>8</number>
    </property>
    <row/>
    <row/>
@@ -308,7 +308,26 @@
    <row/>
    <row/>
    <row/>
-   <column/>
+   <column>
+    <property name="text">
+     <string>Date</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Focussed</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Distracted</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Percentage</string>
+    </property>
+   </column>
    <column/>
    <column/>
    <column/>
@@ -318,7 +337,7 @@
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>290</y>
+     <y>280</y>
      <width>681</width>
      <height>261</height>
     </rect>
