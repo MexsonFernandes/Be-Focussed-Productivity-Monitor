@@ -34,8 +34,8 @@ def start_detection(pressed_button, self):
     # init camera window
     if pressed_button == "test":
         cv2.namedWindow('DEMO')
-    else:
-        cv2.namedWindow('Productivity Monitor')
+    # else:
+        # cv2.namedWindow('Productivity Monitor')
     camera = cv2.VideoCapture(0)
 
     # Check if camera opened successfully
@@ -43,13 +43,15 @@ def start_detection(pressed_button, self):
         print("Unable to read camera feed")
 
     # start timer
-    start_time = time.time()
-    
-    while True:
 
+    while True:
+        if pressed_button == "run":
+            if self.check_status is False:
+                break
         # get frame
         ret, frame = camera.read()
 
+        start_time = time.time()
         # if we have a frame, do stuff
         if ret:
 
@@ -104,13 +106,22 @@ def start_detection(pressed_button, self):
                     # get label
                     if probs_mean <= 0.5:
                         label = 'distracted'
+                        if pressed_button == "run":
+                            self.distract = float(self.distract) + float(time.time() - start_time)
+                            self.distracted_time.setText(str(round(self.distract/60, 2)) + " Min")
+                            self.distracted_time.adjustSize()
                     else:
                         label = 'focused'
+                        if pressed_button == "run":
+                            self.focus = float(self.focus) + float(time.time() - start_time)
+                            self.focus_time.setText(str(round(self.focus/60, 2)) + " Min")
+                            self.focus_time.adjustSize()
 
                     # insert label on frame
                     cv2.putText(frame,label,(x, y-5), cv2.FONT_HERSHEY_SIMPLEX,
                     1, (0, 0, 255), 3, cv2.LINE_AA)
-            cv2.putText(frame, "press q to quit", (30, 30), cv2.FONT_HERSHEY_SIMPLEX,
+            if pressed_button == "test":
+                cv2.putText(frame, "press q to quit", (30, 30), cv2.FONT_HERSHEY_SIMPLEX,
                                 1, (255, 0, 255), 3, cv2.LINE_AA)
 
             # Write the frame to video
@@ -119,8 +130,8 @@ def start_detection(pressed_button, self):
             # display frame in window
             if pressed_button == "test":
                 cv2.imshow('DEMO', frame)
-            else:
-                cv2.imshow('Productivity Monitor', frame)
+            # else:
+                # cv2.imshow('Productivity Monitor', frame)
 
             # quit with q
             if cv2.waitKey(1) & 0xFF == ord('q'):

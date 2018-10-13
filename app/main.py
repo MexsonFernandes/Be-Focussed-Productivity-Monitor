@@ -1,5 +1,5 @@
 from PyQt5.uic import loadUi
-from PyQt5.QtWidgets import QDialog, QApplication, QErrorMessage, QMessageBox, QTableWidget, QTableWidgetItem, QVBoxLayout, QAbstractItemView
+from PyQt5.QtWidgets import QDialog, QApplication, QErrorMessage, QMessageBox, QTableWidget, QTableWidgetItem, QVBoxLayout, QAbstractItemView, QLabel
 from distraction_detector import start_detection
 
 import sys
@@ -38,9 +38,9 @@ class ProductivityMonitor(QDialog):
 
         # counters
         self.focus = 0.0
-        self.distracted = 0.0
+        self.distract = 0.0
         self.date = str(datetime.date.today())
-        self.percentage = 0
+        self.percent = 0.0
 
         # button definition
         self.test.clicked.connect(self.test_func)
@@ -50,14 +50,16 @@ class ProductivityMonitor(QDialog):
 
         # table
         self.tableWidget = QTableWidget()
-        self.tableWidget.resizeColumnsToContents()
-        self.tableWidget.setSelectionMode(QAbstractItemView.NoSelection)
         # set row count
         self.tableWidget.setRowCount(1)
 
         # set column count
         self.tableWidget.setColumnCount(4)
+        self.tableWidget.setSelectionMode(QAbstractItemView.NoSelection)
+        self.tableWidget.setHorizontalHeaderLabels(["-----DATE-----", "-----FOCUS TIME (Min)------",
+                                                    "------DISTRACTED TIME(Min)-----", "-----PERCENTAGE(%)-----"])
 
+        self.tableWidget.resizeColumnsToContents()
         self.update_table()
 
         self.check_status = False
@@ -76,6 +78,7 @@ class ProductivityMonitor(QDialog):
 
         except Exception as e:
             show_error("Database error!!!", str(e))
+            con.close()
         self.layout.addWidget(self.tableWidget)
         self.show()
 
@@ -91,16 +94,22 @@ class ProductivityMonitor(QDialog):
             clear_conn.commit()
             clear_conn.close()
             show_message("Successfully deleted data.")
+            self.distracted_time.setText("0.0 Min")
+            self.distracted_time.adjustSize()
+            self.focus_time.setText("0.0 Min")
+            self.focus_time.adjustSize()
             self.update_table()
         except Exception as e:
             show_error("Database error!!!", e)
+            clear_conn.close()
         pass
 
     def record(self):
-        while True:
-            if self.check_status is False:
-                break
+        try:
             start_detection("run", self)
+        except Exception as e:
+            show_error("Resource error!!!", e)
+            self.stop_func()
 
     def start_func(self):
         if not self.check_status:
@@ -108,6 +117,8 @@ class ProductivityMonitor(QDialog):
             self.clear.setEnabled(False)
             self.check_status = True
             show_message("Remember to click on STOP to save data.")
+            self.focus = 0.0
+            self.distract = 0.0
             th = threading.Thread(target=self.record)
             th.daemon = True
             th.start()
@@ -117,19 +128,36 @@ class ProductivityMonitor(QDialog):
             self.test.setEnabled(True)
             self.clear.setEnabled(True)
             self.check_status = False
+
+            # calc percent
+            if self.distract != 0.0:
+                self.percent = round((self.focus/(self.focus + self.distract))*100, 2)
+            else:
+                self.percent = 0.0
+
             add_conn = sqlite3.connect(db_file)
             add_cur = add_conn.cursor()
             try:
-                data = add_cur.execute("SELECT * FROM ProdMonitor WHERE date='" + str(self.date) + "'")
-                if len([i for i in data]) == 0:
+                data = add_cur.execute("SELECT * FROM ProdMonitor WHERE date='" + str(self.date)+"'")
+                data = [i for i in data]
+                if len(data) == 0:
                     add_cur.execute("INSERT INTO ProdMonitor(date, focus, distracted, percentage) VALUES('" +
-                            str(self.date) + "','" + str(self.focus) + "','" + str(self.distracted) + "','" + str(self.percentage) + "')")
+                            str(self.date) + "','" + str(round(self.focus/60, 2)) + "','" +
+                                    str(round(self.distract/60, 2)) + "','" + str(self.percent) + "')")
                 else:
-                    add_cur.execute("UPDATE ProdMonitor set focus='" + str(self.focus) + "',distracted='" + str(self.distracted) +
-                                    "',percentage='" + str(self.percentage) + "' WHERE date='" + str(self.date) + "'")
+                    # check distract column
+                    if data[0][2] != 0.0:
+                        self.percent = round(((float(data[0][1]) + self.focus) / ((float(data[0][1]) + self.focus +
+                                                              float(data[0][2]) + self.distract))) * 100, 2)
+                    else:
+                        self.percent = 0.0
+                    add_cur.execute("UPDATE ProdMonitor set focus='" + str(round(float(data[0][1])+(self.focus/60), 2)) + "',distracted='"
+                                    + str(round(float(data[0][2])+(self.distract/60), 2)) +
+                                    "',percentage='" + str(self.percent) + "' WHERE date='" + str(self.date) + "'")
                 add_conn.commit()
             except Exception as e:
                 show_error("Database error!!!", e)
+                add_conn.close()
             add_conn.close()
             self.update_table()
 
