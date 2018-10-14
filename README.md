@@ -16,7 +16,7 @@
   - Mexson Fernandes
   
 ## Application GUI:
-<img src="img/gui.png" width="640px" height="480px"/>
+<img src="img/GUI.png" width="640px" height="480px"/>
 
 ## User monitoring:
  - When user is focussed.
