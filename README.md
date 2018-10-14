@@ -24,3 +24,7 @@
  
  - When user is distracted.
 <img src="img/distracted.png" width="640px" height="480px"/>
+
+## Demo video:
+
+[Demo Video](https://youtu.be/HkPTAjBWgXM)
