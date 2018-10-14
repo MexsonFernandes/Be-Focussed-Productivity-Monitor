@@ -27,4 +27,6 @@
 
 ## Demo video:
 
-[Demo Video](https://youtu.be/HkPTAjBWgXM)
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=HkPTAjBWgXM"><img src="https://img.youtube.com/vi/HkPTAjBWgXM/0.jpg" alt="IMAGE ALT TEXT"></a>
+</div>
