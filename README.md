@@ -6,13 +6,19 @@
  - tensorflow
  - mkl-service
  - pyqt5
+ - sqlite3
+
+## How to use:
+ - Install all the required packages as mentioned above.
+ - Open terminal or command prompt in "app" folder.
+ - Run command "python3 main.py".
 
 ## Credits : 
   - Special thanks to <a href="https://github.com/johannesharmse">Johannes Harmse</a>
   - github.com@johannesharmse/distraction_detection
   
 ## Developers : 
-  - Ansh Varun (PyQT + SQLite Database)
+  - Ansh Varun
   - Mexson Fernandes
   
 ## Application GUI:
