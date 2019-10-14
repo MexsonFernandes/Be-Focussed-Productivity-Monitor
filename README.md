@@ -13,6 +13,11 @@
  - Open terminal or command prompt in "app" folder.
  - Run command "python3 main.py".
 
+## Support:
+> If you found  this project helpful, consider buying us a cup of :coffee
+> * [PayPal](paypal.me/RoboMex)
+
+
 ## Credits : 
   - Special thanks to <a href="https://github.com/johannesharmse">Johannes Harmse</a>
   - github.com@johannesharmse/distraction_detection
