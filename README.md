@@ -14,8 +14,9 @@
  - Run command "python3 main.py".
 
 ## Support:
-> If you found  this project helpful, consider buying us a cup of :coffee
-> * [PayPal](paypal.me/RoboMex)
+> If you found  this project helpful, consider buying us a cup of :coffee:
+>
+> * [PayPal](https://paypal.me/RoboMex?locale.x=en_GB)
 
 
 ## Credits : 
