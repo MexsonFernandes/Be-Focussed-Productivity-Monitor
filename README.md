@@ -9,9 +9,8 @@
  - sqlite3
 
 ## How to use:
- - Install all the required packages as mentioned above.
- - Open terminal or command prompt in "app" folder.
- - Run command "python3 main.py".
+ - `pip3 install -r requirements.txt`
+ - `cd app && python3 main.py`
 
 ## Support:
 > If you found  this project helpful, consider buying us a cup of :coffee:
