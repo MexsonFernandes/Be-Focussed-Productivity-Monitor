@@ -13,9 +13,7 @@
  - `cd app && python3 main.py`
 
 ## Support:
-> If you found  this project helpful, consider buying us a cup of :coffee:
->
-> * [PayPal](https://paypal.me/RoboMex?locale.x=en_GB)
+<a href='https://ko-fi.com/Y8Y31LBT4' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 
 ## Credits : 
