@@ -1,5 +1,5 @@
 #  Be Focussed - PyQT Desktop app for Windows and Linux
-
+[![HitCount](http://hits.dwyl.com/MexsonFernandes/Be-Focussed-Productivity-Monitor.svg)](http://hits.dwyl.com/MexsonFernandes/Be-Focussed-Productivity-Monitor)
 ## Packages :
  - imutils
  - keras 
