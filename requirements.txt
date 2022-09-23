@@ -19,7 +19,7 @@ numpy==1.18.0
 oauthlib==3.1.0
 opencv-python==4.1.2.30
 opt-einsum==3.1.0
-protobuf==3.11.2
+protobuf==3.18.3
 pyasn1==0.4.8
 pyasn1-modules==0.2.7
 PyQt5==5.14.0
